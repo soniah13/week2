@@ -26,12 +26,15 @@ function Gallery () {
   }
   
   return (
+    <>
     <div>
       {characters.map((character) => (
         <Character key={character.id} character={character} handleDelete={handleDelete} />
       ))}
       
     </div>
+    
+    </>
     
   );
 }

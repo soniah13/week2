@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import Character from './Character';
 
 
-function Search(){
+function Search({}){
     const [allCharacters, setAllCharacters] = useState([]);
     const [filteredCharacters, setFilteredCharacters] = useState([]);
     const [query, setQuery] = useState("");
@@ -17,20 +17,14 @@ function Search(){
         .catch((error) => console.error("Error fetching data:", error));
       }, []);
 
-      useEffect(() => {
-        handleSearch();
-      },[query]);
+     useEffect(() => {
+        const filterBySearch = query === "" ? allCharacters : allCharacters.filter((item) => 
+        item.name.toLowerCase().includes(query.toLowerCase()) || item.id.toString() === query
+    );
 
-    const handleSearch = () =>{
-        if(query === ""){
-            setFilteredCharacters(allCharacters);
-        }else{
-            const filterBySearch = allCharacters.filter((item) => 
-                item.name.toLowerCase().includes(query.toLowerCase())
-            );
-            setFilteredCharacters(filterBySearch);
-        }
-    }
+        setFilteredCharacters(filterBySearch);
+     },[query, allCharacters]);
+    
 
     const handleDelete = (id) => {
         const updatedCharacters = filteredCharacters.filter(character => character.id !== id);
@@ -39,15 +33,13 @@ function Search(){
     }
 
     return(
-        <div className="p-4">
+        <div>
             <form className='flex items-center justify-center mt-6'>
-            <input 
-                type='text'
-                id='search-form'
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder='Search Character'
-                className="border border-gray-300 rounded-md p-2 mb-4 w-full"> Search</input>
-                <button className='flex itms-center border-2 border-solid rounded-full bg-slate-200 pl-5 pr-6' type='submit'>search </button>
+            <input  type='text' id='search-form' onChange={(e) => setQuery(e.target.value)} placeholder='Search Character'
+                className="border border-gray-300 rounded-md p-2 mb-4 w-full text-black font-semibold text-l"/>
+                <div className='pb-5'>
+                <button className='flex itms-center border-2 border-solid rounded-full bg-orange-100 pl-5 pr-6 p-2 text-black font-semibold text-l' type='submit'>search </button>
+                </div>
                 </form>
 
             <div className="flex flex-wrap justify-between">

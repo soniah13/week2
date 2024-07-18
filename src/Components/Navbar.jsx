@@ -10,10 +10,11 @@ function Navbar () {
         <nav className='font-semibold'>
             <ul className='flex justify-end px-20 py-6 bg-gray-500 text-2xl '>
                 <div className='uppercase '>
-                    
+
+                    <Link to='/searchList'className='hover:bg-gray-900 text-white float-right cursor-pointer font-semibold py-2 px-3'>SearchList</Link>
                     <Link to='/gallery'className='hover:bg-gray-900 text-white float-right cursor-pointer font-semibold py-2 px-3'>Gallery</Link>
                     <Link to='/'className='hover:bg-gray-900 text-white float-right cursor-pointer font-semibold py-2 px-3'>Home</Link>
-                    <Link to='/search'className='hover:bg-gray-900 text-white float-right cursor-pointer font-semibold py-2 px-3'>Search</Link>
+                    
                 </div>
             </ul>
         </nav>
